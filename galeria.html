@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Galería | Cacao Sagrado</title>
+  <link rel="icon" type="image/png" sizes="128x128" href="img/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+
+
+    /* ── HERO ─────────────────────────────────────── */
+    .galeria-hero {
+      background: var(--brown-dark);
+      padding: 160px 0 110px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .galeria-hero .section-label { color: var(--gold); display: block; margin-bottom: 14px; }
+    .galeria-hero h1 { color: var(--cream); font-size: clamp(2rem, 5vw, 3.8rem); margin-bottom: 16px; }
+    .galeria-hero p  { color: rgba(255,255,255,0.6); font-size: 1.05rem; }
+
+    .galeria-hero::before {
+      content: '';
+      position: absolute;
+      width: 320px; height: 320px;
+      border-radius: 50%;
+      background: var(--gold);
+      opacity: 0.12;
+      top: -80px; right: -60px;
+      pointer-events: none;
+    }
+    .galeria-hero::after {
+      content: '';
+      position: absolute;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      border: 3px solid var(--gold);
+      opacity: 0.30;
+      bottom: 40px; left: -50px;
+      pointer-events: none;
+    }
+
+    /* ── SECCIÓN GRILLA ───────────────────────────── */
+    .galeria-section {
+      background: var(--cream-alt);
+      position: relative;
+      overflow: hidden;
+      padding: 64px 0 100px;
+    }
+
+    .galeria-section::before {
+      content: '';
+      position: absolute;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: var(--gold);
+      opacity: 0.11;
+      top: 40px; right: -60px;
+      pointer-events: none;
+    }
+    .galeria-section::after {
+      content: '';
+      position: absolute;
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      border: 3px solid var(--gold);
+      opacity: 0.38;
+      bottom: 60px; left: -50px;
+      pointer-events: none;
+    }
+    .gs-diamond {
+      position: absolute;
+      width: 80px; height: 80px;
+      border: 3px solid var(--gold);
+      border-radius: 12px;
+      opacity: 0.40;
+      top: 80px; left: 140px;
+      transform: rotate(38deg);
+      pointer-events: none;
+    }
+    .gs-dot {
+      position: absolute;
+      width: 90px; height: 90px;
+      border-radius: 50%;
+      background: var(--brown);
+      opacity: 0.08;
+      bottom: 90px; right: 120px;
+      pointer-events: none;
+    }
+    .gs-ring2 {
+      position: absolute;
+      width: 380px; height: 380px;
+      border-radius: 50%;
+      border: 3px solid var(--gold);
+      opacity: 0.25;
+      top: -120px; left: -100px;
+      pointer-events: none;
+    }
+    .gs-circle2 {
+      position: absolute;
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      background: var(--gold);
+      opacity: 0.07;
+      top: 50%; left: 4%;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+    .gs-diamond2 {
+      position: absolute;
+      width: 55px; height: 55px;
+      border: 2px solid var(--gold);
+      border-radius: 8px;
+      opacity: 0.35;
+      bottom: 120px; right: 40%;
+      transform: rotate(22deg);
+      pointer-events: none;
+    }
+    .gs-stars {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    .gs-stars span {
+      position: absolute;
+      color: var(--brown);
+      font-family: var(--font-heading);
+      opacity: 0.12;
+    }
+    .gs-stars span:nth-child(1) { font-size: 1.3rem; top: 12%;  left: 22%;  }
+    .gs-stars span:nth-child(2) { font-size: 0.8rem; top: 38%;  right: 18%; }
+    .gs-stars span:nth-child(3) { font-size: 1.6rem; bottom: 18%; left: 55%; }
+    .gs-stars span:nth-child(4) { font-size: 0.9rem; top: 70%;  left: 10%;  }
+
+    .galeria-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: 1px;
+      gap: 6px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .galeria-item {
+      overflow: hidden;
+      border-radius: var(--radius);
+      cursor: pointer;
+      position: relative;
+      box-shadow: 0 4px 24px rgba(44, 24, 16, 0.1);
+      transition: box-shadow 0.4s ease, transform 0.4s ease;
+    }
+
+    .galeria-item:hover {
+      box-shadow: 0 16px 48px rgba(44, 24, 16, 0.22);
+      transform: translateY(-4px);
+    }
+
+    .galeria-item img { width:100%; display:block; transition:transform 0.6s ease; }
+    .galeria-item:hover img { transform:scale(1.06); }
+
+    .galeria-item::after {
+      content: '\f00e';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem; color: white;
+      background: rgba(44, 24, 16, 0.4);
+      opacity: 0; transition: opacity 0.35s ease;
+    }
+    .galeria-item:hover::after { opacity: 1; }
+
+    .galeria-item:nth-child(1) { --delay:0ms }
+    .galeria-item:nth-child(2) { --delay:80ms }
+    .galeria-item:nth-child(3) { --delay:160ms }
+    .galeria-item:nth-child(4) { --delay:240ms }
+    .galeria-item:nth-child(5) { --delay:320ms }
+    .galeria-item:nth-child(6) { --delay:400ms }
+    .galeria-item:nth-child(7) { --delay:480ms }
+    .galeria-item:nth-child(8) { --delay:560ms }
+    .galeria-item:nth-child(9) { --delay:640ms }
+    .galeria-item.fade-in-up   { transition-delay: var(--delay, 0ms); }
+
+    /* ── LIGHTBOX ─────────────────────────────────── */
+    .lightbox { display:none; position:fixed; inset:0; background:rgba(10,6,4,.93); z-index:9999; align-items:center; justify-content:center; padding:24px; }
+    .lightbox.open { display:flex; }
+    .lightbox img { max-width:90vw; max-height:88vh; border-radius:8px; object-fit:contain; box-shadow:0 24px 80px rgba(0,0,0,.7); }
+    .lb-close { position:fixed; top:20px; right:24px; background:none; border:none; color:var(--cream); font-size:1.8rem; cursor:pointer; opacity:.75; transition:opacity .2s; }
+    .lb-close:hover { opacity:1; }
+    .lb-nav { position:fixed; top:50%; transform:translateY(-50%); background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.2); color:var(--cream); width:48px; height:48px; border-radius:50%; font-size:1.2rem; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background .25s; }
+    .lb-nav:hover { background:rgba(255,255,255,.22); }
+    .lb-prev { left:20px; }
+    .lb-next { right:20px; }
+
+    /* link activo */
+    .navbar.scrolled .nav-links a.nav-active { color:var(--text); }
+    .navbar.scrolled .nav-links a.nav-active::after { width:100%; }
+
+    @media (max-width:768px) { .galeria-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width:480px) { .galeria-grid { grid-template-columns: 1fr; } .lb-prev { left:8px; } .lb-next { right:8px; } }
+  </style>
+</head>
+<body>
+
+  <!-- ====== NAVBAR ====== -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <img src="img/logo-empresa-ceremonia-del-cacao-removebg-preview.png" alt="Cacao Sagrado" class="logo-icon" />
+        Cacao Sagrado
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <button class="nav-close" id="nav-close" aria-label="Cerrar menú"><i class="fa-solid fa-xmark"></i></button>
+        <li><a href="index.html#que-es">¿Qué es?</a></li>
+        <li><a href="index.html#historia">Historia</a></li>
+        <li><a href="index.html#beneficios">Beneficios</a></li>
+        <li><a href="index.html#ritual">El Ritual</a></li>
+        <li><a href="galeria.html" class="nav-active">Galería</a></li>
+        <li><a href="https://wa.me/5491158354649" class="nav-cta" target="_blank" rel="noopener">Reservar</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menú"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- ====== HERO ====== -->
+  <div class="galeria-hero">
+
+    <div class="container" style="position:relative;z-index:1;">
+      <span class="section-label fade-in-up">Momentos compartidos</span>
+      <h1 class="fade-in-up">Galería de Ceremonias</h1>
+      <p class="fade-in-up">Instantes de conexión, amor y presencia.</p>
+    </div>
+  </div>
+
+  <!-- ====== GRILLA ====== -->
+  <section class="galeria-section">
+
+    <div class="gs-ring2"></div>
+    <div class="gs-diamond"></div>
+    <div class="gs-dot"></div>
+    <div class="gs-circle2"></div>
+    <div class="gs-diamond2"></div>
+    <div class="gs-stars">
+      <span>✦</span><span>✦</span><span>✦</span><span>✦</span>
+    </div>
+
+    <div class="container">
+      <div class="galeria-grid">
+        <div class="galeria-item fade-in-up" data-index="0"><img src="img/WhatsApp Image 2026-05-21 at 20.59.23.jpeg"    alt="Ceremonia del Cacao" loading="lazy"/></div>
+        <div class="galeria-item fade-in-up" data-index="1"><img src="img/WhatsApp Image 2026-05-21 at 20.59.25.jpeg"    alt="Ceremonia del Cacao" loading="lazy"/></div>
+        <div class="galeria-item fade-in-up" data-index="2"><img src="img/WhatsApp Image 2026-05-21 at 20.59.26.jpeg"    alt="Ceremonia del Cacao" loading="lazy"/></div>
+        <div class="galeria-item fade-in-up" data-index="3"><img src="img/WhatsApp Image 2026-05-21 at 20.59.26 (1).jpeg" alt="Ceremonia del Cacao" loading="lazy"/></div>
+        <div class="galeria-item fade-in-up" data-index="4"><img src="img/WhatsApp Image 2026-05-21 at 20.59.26 (2).jpeg" alt="Ceremonia del Cacao" loading="lazy"/></div>
+        <div class="galeria-item fade-in-up" data-index="5"><img src="img/WhatsApp Image 2026-05-21 at 20.59.26 (3).jpeg" alt="Ceremonia del Cacao" loading="lazy"/></div>
+        <div class="galeria-item fade-in-up" data-index="6"><img src="img/WhatsApp Image 2026-05-21 at 20.59.24.jpeg"    alt="Ceremonia del Cacao" loading="lazy"/></div>
+        <div class="galeria-item fade-in-up" data-index="7"><img src="img/WhatsApp Image 2026-05-21 at 20.59.27.jpeg"    alt="Ceremonia del Cacao" loading="lazy"/></div>
+        <div class="galeria-item fade-in-up" data-index="8"><img src="img/WhatsApp Image 2026-05-21 at 20.59.27 (1).jpeg" alt="Ceremonia del Cacao" loading="lazy"/></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== LIGHTBOX ====== -->
+  <div class="lightbox" id="lightbox">
+    <button class="lb-close" id="lb-close"><i class="fa-solid fa-xmark"></i></button>
+    <button class="lb-nav lb-prev" id="lb-prev">&#8592;</button>
+    <img id="lb-img" src="" alt="Foto ceremonia"/>
+    <button class="lb-nav lb-next" id="lb-next">&#8594;</button>
+  </div>
+
+  <script src="https://unpkg.com/libphonenumber-js@1.11.4/bundle/libphonenumber-min.js"></script>
+  <script src="java/main.js"></script>
+  <script>
+    const items  = document.querySelectorAll('.galeria-item');
+    const lb     = document.getElementById('lightbox');
+    const lbImg  = document.getElementById('lb-img');
+    const srcs   = [...items].map(el => el.querySelector('img').src);
+    let current  = 0;
+
+    function openLb(i) { current = i; lbImg.src = srcs[current]; lb.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function closeLb() { lb.classList.remove('open'); document.body.style.overflow = ''; }
+    function prevImg() { current = (current - 1 + srcs.length) % srcs.length; lbImg.src = srcs[current]; }
+    function nextImg() { current = (current + 1) % srcs.length; lbImg.src = srcs[current]; }
+
+    items.forEach((item, i) => item.addEventListener('click', () => openLb(i)));
+    document.getElementById('lb-close').addEventListener('click', closeLb);
+    document.getElementById('lb-prev').addEventListener('click', prevImg);
+    document.getElementById('lb-next').addEventListener('click', nextImg);
+    lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+
+    document.addEventListener('keydown', e => {
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'Escape')     closeLb();
+      if (e.key === 'ArrowLeft')  prevImg();
+      if (e.key === 'ArrowRight') nextImg();
+    });
+
+    let touchX = 0;
+    lb.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
+    lb.addEventListener('touchend', e => {
+      const diff = touchX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) diff > 0 ? nextImg() : prevImg();
+    });
+
+    document.querySelectorAll('a[href^="index.html"], a[href="index.html"]').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const href = link.href;
+        document.body.classList.add('page-out');
+        setTimeout(() => { window.location.href = href; }, 350);
+      });
+    });
+
+    function masonryLayout() {
+      const grid = document.querySelector('.galeria-grid');
+      if (!grid) return;
+      const items = [...grid.querySelectorAll('.galeria-item')];
+      if (!items.length) return;
+      const colW = items[0].getBoundingClientRect().width;
+      if (!colW) return;
+      items.forEach(item => {
+        const img = item.querySelector('img');
+        if (!img.naturalWidth) return;
+        const span = Math.ceil((img.naturalHeight / img.naturalWidth * colW + 6) / 7);
+        item.style.gridRowEnd = 'span ' + span;
+      });
+    }
+
+    document.querySelectorAll('.galeria-item img').forEach(img => {
+      if (img.complete && img.naturalWidth) masonryLayout();
+      else img.addEventListener('load', masonryLayout);
+    });
+    window.addEventListener('resize', masonryLayout);
+  </script>
+</body>
+</html>
