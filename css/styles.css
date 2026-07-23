@@ -345,7 +345,8 @@ h2.light { color: var(--cream); }
   align-items: center;
   justify-content: center;
   text-align: center;
-  background-image: url('../img/img-sección-1-.png');
+  background-color: var(--brown-dark, #2C1810);
+  background-image: url('../img/img-seccion-hero.jpeg');
   background-size: cover;
   background-position: center 85%;
   background-attachment: scroll;
@@ -510,6 +511,7 @@ h2.light { color: var(--cream); }
 .experience {
   position: relative;
   padding: 140px 0;
+  background-color: var(--brown-dark, #2C1810);
   background-image: url('../img/new-1.jpg');
   background-size: cover;
   background-position: center;
